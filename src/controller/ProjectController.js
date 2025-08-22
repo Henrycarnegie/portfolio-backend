@@ -1,25 +1,17 @@
 import Project from "../models/ProjectModels.js";
 
+import { ProjectModel } from "../models/project.js";
+
 export const getAllProjects = async (req, res) => {
-   try {
-      const response = await Project.findAll();
-      res.status(200).json(response);
-   } catch (error) {
-      console.log(error.message);
-   }
+   const Project = await ProjectModel();
+   const projects = await Project.findAll();
+   res.json(projects);
 };
 
 export const getProjectsById = async (req, res) => {
-   try {
-      const response = await Project.findOne({
-         where: {
-            id: req.params.id,
-         },
-      });
-      res.status(200).json(response);
-   } catch (error) {
-      console.log(error.message);
-   }
+   const Project = await ProjectModel();
+   const project = await Project.findByPk(req.params.id);
+   res.json(project);
 };
 
 export const createProject = async (req, res) => {

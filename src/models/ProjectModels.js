@@ -1,35 +1,26 @@
-import { Sequelize } from "sequelize";
-import db from "../config/database.js";
+import { getSequelize } from "../config/database.js";
 
-const { DataTypes } = Sequelize;
+export async function ProjectModel() {
+   const sequelize = await getSequelize();
+   const { DataTypes } = await import("sequelize");
 
-const Project = db.define(
-  "projects",
-  {
-    id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      primaryKey: true,
-    },
-    projectName: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    category: DataTypes.STRING,
-    description: DataTypes.TEXT,
-    startDate: DataTypes.DATE,
-    endDate: DataTypes.DATE,
-  },
-  {
-    freezeTableName: true,
-    timestamps: true,
-  }
-);
+   const Project = sequelize.define(
+      "projects",
+      {
+         id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
+         projectName: { type: DataTypes.STRING, allowNull: false },
+         category: DataTypes.STRING,
+         description: DataTypes.TEXT,
+         startDate: DataTypes.DATE,
+         endDate: DataTypes.DATE,
+      },
+      { freezeTableName: true, timestamps: true }
+   );
 
-export default Project;
+   // Jangan sync di production
+   if (process.env.NODE_ENV !== "production") {
+      await sequelize.sync();
+   }
 
-if (process.env.NODE_ENV !== "production") {
-  (async () => {
-    await db.sync();
-  })();
+   return Project;
 }
