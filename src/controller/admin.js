@@ -1,23 +1,4 @@
-const data = [
-   {
-      id: "1",
-      projectName: "Game Development",
-      category: "web-base-game",
-      schemaProject: "Capstone",
-   },
-   {
-      id: "2",
-      projectName: "Game Development",
-      category: "game",
-      schemaProject: "Capstone",
-   },
-   {
-      id: "3",
-      projectName: "Thesis",
-      category: "website",
-      schemaProject: "Personal",
-   },
-];
+const projectModel = require("../models/projectModel")
 
 // Post - Post projects
 const postProjects = (req, res) => {
