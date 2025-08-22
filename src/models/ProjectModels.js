@@ -1,5 +1,5 @@
 import { Sequelize } from "sequelize";
-import db from "../config/database";
+import db from "../config/database.js";
 
 const { DataTypes } = Sequelize;
 
@@ -17,8 +17,8 @@ const Project = db.define(
       },
       category: DataTypes.STRING,
       description: DataTypes.TEXT,
-      startDate: DataTypes.Date,
-      endDate: DataTypes.Date,
+      startDate: DataTypes.DATE,
+      endDate: DataTypes.DATE,
    },
    {
       freezeTableName: true,
