@@ -12,11 +12,4 @@ app.use(express.json());
 
 app.use(adminRoute);
 
-// if (process.env.NODE_ENV !== "production") {
-//   const port = process.env.PORT || 3001;
-//   app.listen(port, () => {
-//     console.log(`Server running locally on http://localhost:${port}`);
-//   });
-// }
-
 export default app;
