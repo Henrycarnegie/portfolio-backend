@@ -1,6 +1,6 @@
 import Project from "../models/ProjectModels.js";
 
-import { ProjectModel } from "../models/project.js";
+import { ProjectModel } from "../models/ProjectModels.js";
 
 export const getAllProjects = async (req, res) => {
    const Project = await ProjectModel();
