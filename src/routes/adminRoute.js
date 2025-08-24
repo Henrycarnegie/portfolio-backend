@@ -10,10 +10,10 @@ import {
 const router = express.Router();
 
 // Get all Project
-router.get("/admin", getAllProjects);
-router.post("/admin", createProject);
-router.get("/admin/:id", getProjectsById);
-router.patch("/admin/:id", updateProject);
-router.delete("/admin/:id", deleteProject);
+router.get("/", getAllProjects);
+router.post("/", createProject);
+router.get("/:id", getProjectsById);
+router.patch("/:id", updateProject);
+router.delete("/:id", deleteProject);
 
 export default router;

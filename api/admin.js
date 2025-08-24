@@ -1,7 +1,7 @@
 import serverless from "serverless-http";
 import express from "express";
 import cors from "cors";
-import adminRoute from "../routes/adminRoute.js";
+import adminRoute from "../src/routes/adminRoute.js";
 
 const app = express();
 
