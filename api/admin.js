@@ -1,13 +1,5 @@
-import serverless from "serverless-http";
-import express from "express";
-import cors from "cors";
-import adminRoute from "../src/routes/adminRoute.js";
+import app from "../index";
 
-const app = express();
-
-app.use(cors({ origin: process.env.FRONTEND_URL || "http://localhost:3000" }));
-app.use(express.json());
-
-app.use("/admin", adminRoute);  
-
-export const handler = serverless(app);
+export default function handler(req, res) {
+  return app(req, res);
+}

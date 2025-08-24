@@ -9,7 +9,6 @@ import {
 
 const router = express.Router();
 
-// Get all Project
 router.get("/", getAllProjects);
 router.post("/", createProject);
 router.get("/:id", getProjectsById);
