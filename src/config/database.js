@@ -1,5 +1,6 @@
 import dotenv from "dotenv";
 import mysql from "mysql2";
+import fs from "fs";
 
 dotenv.config();
 
@@ -20,7 +21,7 @@ export async function getSequelize() {
             logging: false,
             dialectOptions: {
                ssl: {
-                  ca: process.env.DB_SSL_CA,
+                 ca: fs.readFileSync(process.env.DB_SSL_CA, "utf8"),
                },
             },
          }
