@@ -20,7 +20,7 @@ export async function getSequelize() {
         logging: false,
         dialectOptions: {
           ssl: {
-            ca: process.env.DB_SSL_CA
+            rejectUnauthorized: false
           }
         }
       }
