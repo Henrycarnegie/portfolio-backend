@@ -1,4 +1,5 @@
 import dotenv from "dotenv";
+import mysql from "mysql2"; 
 dotenv.config();
 
 let sequelize;
@@ -12,10 +13,13 @@ export async function getSequelize() {
       process.env.DB_PASSWORD,
       {
         host: process.env.DB_HOST,
-        dialect: "mysql",
         port: process.env.DB_PORT,
+        dialect: "mysql",
+        dialectModule: mysql, 
+        logging: false, 
       }
     );
   }
   return sequelize;
 }
+
