@@ -1,13 +1,22 @@
 import dotenv from "dotenv";
 import mysql from "mysql2";
+import fs from "fs";
+import path from "path"; 
 
 dotenv.config();
 
 let sequelize;
+console.log("=== DEBUG DB_SSL_CA ===");
+console.log("Raw env:", process.env.DB_SSL_CA);
 
 export async function getSequelize() {
    if (!sequelize) {
       const { Sequelize } = await import("sequelize");
+
+      // Resolve relative path ke absolute path
+      const caPath = path.resolve(process.env.DB_SSL_CA);
+      console.log("Resolved CA path:", caPath);
+
       sequelize = new Sequelize(
          process.env.DB_NAME,
          process.env.DB_USER,
@@ -20,7 +29,7 @@ export async function getSequelize() {
             logging: false,
             dialectOptions: {
                ssl: {
-                  ca: process.env.DB_SSL_CA,
+                 ca: fs.readFileSync(caPath, "utf8")
                },
             },
          }
