@@ -9,10 +9,13 @@ import {
 
 const router = express.Router();
 
-router.get("/", getAllProjects);
-router.post("/", createProject);
-router.get("/:id", getProjectsById);
-router.patch("/:id", updateProject);
-router.delete("/:id", deleteProject);
+router.get("/projects", getAllProjects);
+router.get("/projects/:id", getProjectsById);
+
+router.post("/projects", createProject);
+
+router.patch("/projects/:id", updateProject);
+
+router.delete("/projects/:id", deleteProject);
 
 export default router;
