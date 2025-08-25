@@ -5,20 +5,19 @@ import adminRoute from "./routes/adminRoute.js";
 const app = express();
 
 const allowedOrigins = [
-  process.env.FRONTEND_URL || "http://localhost:3000",
-  "https://portfolio-henry-carnegie.vercel.app"
+  "http://localhost:3000",
+  "https://portfolio-henry-carnegie.vercel.app",
+  "https://www.portfolio-henry-carnegie.vercel.app"
 ];
 
 app.use(cors({
   origin: (origin, callback) => {
     if (!origin) return callback(null, true);
-    if (allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
+    const isAllowed = allowedOrigins.some(o => origin.startsWith(o));
+    if (isAllowed) return callback(null, true);
+    callback(new Error(`CORS error: ${origin} not allowed`));
   },
-  credentials: true // kalau butuh cookies
+  credentials: true
 }));
 
 app.use(express.json());
